@@ -316,7 +316,7 @@ p { color: var(--muted); line-height: 1.68; }
 .timeline-card { padding: 22px; position: relative; min-height: 240px; }
 .timeline-card::before {
   counter-increment: step;
-  content: "0" counter(step);
+  content: counter(step);
   display: inline-flex;
   color: #071018;
   background: var(--lime);
@@ -510,6 +510,25 @@ p { color: var(--muted); line-height: 1.68; }
   box-shadow: 0 1px 3px rgba(0,0,0,.08);
   padding: 26px 24px 28px;
 }
+.wp-login-error {
+  background: #fff;
+  border: 1px solid #c3c4c7;
+  border-left: 4px solid #d63638;
+  box-shadow: 0 1px 3px rgba(0,0,0,.08);
+  color: #3c434a;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 16px;
+  padding: 12px;
+}
+.wp-login-card.has-error {
+  animation: wp-login-shake .2s linear 2;
+}
+@keyframes wp-login-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
 .wp-login-card label { display: block; color: #1d2327; font-size: 14px; margin-bottom: 8px; }
 .wp-login-card input[type="text"], .wp-login-card input[type="password"] {
   width: 100%;
@@ -572,6 +591,82 @@ p { color: var(--muted); line-height: 1.68; }
   padding: 0 16px;
   border-radius: 3px;
   font-weight: 600;
+}
+.wp-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+.wp-modal[hidden] { display: none; }
+.wp-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(30, 30, 30, .42);
+  cursor: default;
+}
+.wp-modal-dialog {
+  position: relative;
+  width: min(430px, 100%);
+  background: #fff;
+  border: 1px solid #c3c4c7;
+  box-shadow: 0 12px 34px rgba(0,0,0,.22);
+  padding: 26px 24px 24px;
+  color: #1d2327;
+}
+.wp-modal-dialog h2 {
+  margin: 0 32px 12px 0;
+  color: #1d2327;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.wp-modal-dialog p {
+  color: #50575e;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.wp-modal-dialog label {
+  display: block;
+  margin: 16px 0 8px;
+  color: #1d2327;
+  font-size: 14px;
+}
+.wp-modal-dialog input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid #8c8f94;
+  border-radius: 0;
+  background: #fff;
+  color: #2c3338;
+  font-size: 18px;
+  padding: 4px 8px;
+}
+.wp-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  background: transparent;
+  color: #50575e;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+.wp-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+.wp-modal-message {
+  border-left: 4px solid #72aee6;
+  background: #f6f7f7;
+  padding: 10px 12px;
 }
 
 @media (max-width: 1040px) {

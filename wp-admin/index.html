@@ -1,44 +1,138 @@
 <!doctype html>
 <html lang="uk-UA">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="generator" content="WordPress 6.8.2" />
-  <meta name="robots" content="noindex, nofollow" />
-  <title>Увійти ‹ Nova Impact Studio — WordPress</title>
-  <meta name="description" content="WordPress admin login" />
-  <link rel="icon" href="/wp-content/themes/nova-impact/assets/img/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="/wp-content/themes/nova-impact/assets/css/style.css" />
-  <script defer src="/wp-includes/js/wp-polyfill.min.js"></script>
-  <script defer src="/wp-content/themes/nova-impact/assets/js/main.js"></script>
-</head>
-<body class="wp-login-page login login-action-login wp-core-ui locale-uk">
-  <main class="wp-login-wrap" aria-label="WordPress login">
-    <div class="wp-logo" aria-label="WordPress">W</div>
-    <form class="wp-login-card" method="post" action="/wp-login.php" autocomplete="on">
-      <p>
-        <label for="user_login">Ім'я користувача або Email адреса</label>
-        <input type="text" name="log" id="user_login" class="input" value="" size="20" autocapitalize="off" autocomplete="username" />
-      </p>
-      <p class="wp-pass-row">
-        <label for="user_pass">Пароль</label>
-        <input type="password" name="pwd" id="user_pass" class="input password-input" value="" size="20" autocomplete="current-password" />
-        <button class="wp-eye" type="button" aria-label="Показати пароль">◉</button>
-      </p>
-      <div class="wp-login-actions">
-        <label class="wp-remember"><input name="rememberme" type="checkbox" id="rememberme" value="forever" /> Запам'ятати мене</label>
-        <button type="button" class="wp-submit">Увійти</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="WordPress 6.8.2" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Увійти ‹ Nova Impact Studio — WordPress</title>
+    <meta name="description" content="WordPress admin login" />
+    <link
+      rel="icon"
+      href="/wp-content/themes/nova-impact/assets/img/favicon.svg"
+      type="image/svg+xml"
+    />
+    <link
+      rel="stylesheet"
+      href="/wp-content/themes/nova-impact/assets/css/style.css"
+    />
+    <script defer src="/wp-includes/js/wp-polyfill.min.js"></script>
+    <script
+      defer
+      src="/wp-content/themes/nova-impact/assets/js/main.js"
+    ></script>
+  </head>
+  <body class="wp-login-page login login-action-login wp-core-ui locale-uk">
+    <main class="wp-login-wrap" aria-label="WordPress login">
+      <div class="wp-logo" aria-label="WordPress">W</div>
+      <div id="login_error" class="wp-login-error" role="alert" hidden>
+        <strong>Помилка:</strong> Неправильне ім'я користувача, email або
+        пароль.
       </div>
-    </form>
-    <nav class="wp-links" aria-label="Login links">
-      <a href="#">Втратили свій пароль?</a>
-      <a href="/">← Назад до Nova Impact Studio</a>
-    </nav>
-    <p class="wp-policy"><a href="#">Політика конфіденційності</a></p>
-    <form class="wp-language">
-      <select aria-label="Мова"><option selected>Українська</option><option>English (United States)</option><option>Русский</option></select>
-      <button type="button">Змінити</button>
-    </form>
-  </main>
-</body>
+      <form
+        class="wp-login-card"
+        method="post"
+        action="/wp-login.php"
+        autocomplete="on"
+        data-wp-login-form
+      >
+        <p>
+          <label for="user_login">Ім'я користувача або Email адреса</label>
+          <input
+            type="text"
+            name="log"
+            id="user_login"
+            class="input"
+            value=""
+            size="20"
+            autocapitalize="off"
+            autocomplete="username"
+          />
+        </p>
+        <p class="wp-pass-row">
+          <label for="user_pass">Пароль</label>
+          <input
+            type="password"
+            name="pwd"
+            id="user_pass"
+            class="input password-input"
+            value=""
+            size="20"
+            autocomplete="current-password"
+          />
+          <button class="wp-eye" type="button" aria-label="Показати пароль">
+            ◉
+          </button>
+        </p>
+        <div class="wp-login-actions">
+          <label class="wp-remember"
+            ><input
+              name="rememberme"
+              type="checkbox"
+              id="rememberme"
+              value="forever"
+            />
+            Запам'ятати мене</label
+          >
+          <button type="submit" class="wp-submit">Увійти</button>
+        </div>
+      </form>
+      <nav class="wp-links" aria-label="Login links">
+        <a href="#lostpassword" data-lost-password>Втратили свій пароль?</a>
+        <a href="/">← Назад до Nova Impact Studio</a>
+      </nav>
+      <p class="wp-policy"><a href="#">Політика конфіденційності</a></p>
+      <form class="wp-language">
+        <select aria-label="Мова">
+          <option selected>Українська</option>
+          <option>English (United States)</option>
+          <option>Русский</option>
+        </select>
+        <button type="button">Змінити</button>
+      </form>
+    </main>
+    <div class="wp-modal" id="lostpassword-modal" aria-hidden="true" hidden>
+      <button
+        class="wp-modal-backdrop"
+        type="button"
+        aria-label="Закрити вікно"
+        data-modal-close
+      ></button>
+      <section
+        class="wp-modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="lostpassword-title"
+      >
+        <button
+          class="wp-modal-close"
+          type="button"
+          aria-label="Закрити"
+          data-modal-close
+        >
+          ×
+        </button>
+        <h2 id="lostpassword-title">Отримати новий пароль</h2>
+        <p>
+          Введіть ім'я користувача або email адресу. Це демонстраційне вікно,
+          тому лист не надсилається.
+        </p>
+        <label for="lost_user_login">Ім'я користувача або Email адреса</label>
+        <input
+          type="text"
+          id="lost_user_login"
+          class="input"
+          autocomplete="username"
+        />
+        <p class="wp-modal-message" role="status" hidden>
+          Запит прийнято. Повідомлення надіслано на ваш email.
+        </p>
+        <div class="wp-modal-actions">
+          <button type="button" class="wp-submit" data-reset-submit>
+            Отримати новий пароль
+          </button>
+        </div>
+      </section>
+    </div>
+  </body>
 </html>

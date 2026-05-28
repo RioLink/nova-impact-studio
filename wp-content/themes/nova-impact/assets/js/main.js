@@ -60,4 +60,48 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!(passInput instanceof HTMLInputElement)) return;
     passInput.type = passInput.type === 'password' ? 'text' : 'password';
   });
+
+  const loginForm = document.querySelector('[data-wp-login-form]');
+  const loginError = document.querySelector('#login_error');
+  const userLogin = document.querySelector('#user_login');
+
+  loginForm?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    loginError?.removeAttribute('hidden');
+    loginForm.classList.remove('has-error');
+    window.setTimeout(() => loginForm.classList.add('has-error'), 0);
+    if (userLogin instanceof HTMLInputElement) userLogin.focus();
+  });
+
+  const lostModal = document.querySelector('#lostpassword-modal');
+  const lostLink = document.querySelector('[data-lost-password]');
+  const lostInput = document.querySelector('#lost_user_login');
+  const lostMessage = document.querySelector('.wp-modal-message');
+
+  const closeLostModal = () => {
+    lostModal?.setAttribute('hidden', '');
+    lostModal?.setAttribute('aria-hidden', 'true');
+  };
+
+  lostLink?.addEventListener('click', (event) => {
+    event.preventDefault();
+    lostModal?.removeAttribute('hidden');
+    lostModal?.setAttribute('aria-hidden', 'false');
+    lostMessage?.setAttribute('hidden', '');
+    if (lostInput instanceof HTMLInputElement) lostInput.focus();
+  });
+
+  document.querySelectorAll('[data-modal-close]').forEach((btn) => {
+    btn.addEventListener('click', closeLostModal);
+  });
+
+  document.querySelector('[data-reset-submit]')?.addEventListener('click', () => {
+    lostMessage?.removeAttribute('hidden');
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && lostModal && !lostModal.hasAttribute('hidden')) {
+      closeLostModal();
+    }
+  });
 });
